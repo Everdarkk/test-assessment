@@ -27,7 +27,7 @@ export default function ProfileForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
-    // проста валідація
+    // simple validation
     if (!form.name || !form.country) {
       setMessage('Name and Country are required')
       return
@@ -88,7 +88,7 @@ export default function ProfileForm() {
     <form
       onSubmit={handleSubmit}
     >
-      <h2>Створити профіль</h2>
+      <h2>Create profile</h2>
       <input
         name="name"
         value={form.name}

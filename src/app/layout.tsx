@@ -19,13 +19,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  'create-profile': createProfile, 
+}: {
   children: React.ReactNode;
-}>) {
+  'create-profile': React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        {createProfile}
       </body>
     </html>
   );
