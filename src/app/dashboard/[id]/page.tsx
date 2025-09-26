@@ -1,5 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
+import UploadCsv from '@/components/UploadCsv';
+import LoanList from '@/components/LoanList';
 
 export default async function ProfileDashboard({ 
   params,
@@ -25,29 +27,36 @@ export default async function ProfileDashboard({
     }
 
   return (
-    <div>
-      <h1>
-        Dashboard: {profile.name}
-      </h1>
-      
+    <>
       <div>
-        <h2>
-            Details
-        </h2>
-
-        <p>
-            Country: {profile.country}
-        </p>
-
-        <p>
-            Founding year: {profile.founding_year}
-        </p>
-
-        <p>
-            Total portfolio: {profile.total_portfolio.toLocaleString('uk-UA')} EUR
-        </p>
-        
+        <h1>
+          Dashboard: {profile.name}
+        </h1>
+      
+        <div>
+          <h2>
+              Details
+          </h2>
+          <p>
+              Country: {profile.country}
+          </p>
+          <p>
+              Founding year: {profile.founding_year}
+          </p>
+          <p>
+              Total portfolio: {profile.total_portfolio.toLocaleString('uk-UA')} EUR
+          </p>
+      
+        </div>
       </div>
-    </div>
+
+      <div>
+        <UploadCsv profileId={profileId} />
+      </div>
+
+      <div>
+        <LoanList profileId={profileId}/>
+      </div>
+    </>
   );
 }

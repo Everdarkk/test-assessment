@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function ProfileForm() {
   const [form, setForm] = useState({
@@ -16,6 +17,8 @@ export default function ProfileForm() {
 
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+
+  const router = useRouter();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm((prev) => ({
@@ -81,6 +84,9 @@ export default function ProfileForm() {
         }
     } finally {
       setLoading(false)
+      setTimeout(() => {
+        router.back()
+      }, 3000)
     }
   }
 
