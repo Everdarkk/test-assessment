@@ -117,6 +117,7 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Total Portfolio (EUR)"
         type="number"
+        required
       />
       <input
         name="creditRiskScore"
@@ -124,12 +125,14 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Credit Risk Score"
         type="number"
+        required
       />
       <input
         name="productType"
         value={form.productType}
         onChange={handleChange}
         placeholder="Product Type (Mortgage/Private/Business)"
+        required
       />
       <input
         name="websiteUrl"
