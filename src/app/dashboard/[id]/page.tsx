@@ -35,17 +35,35 @@ export default async function ProfileDashboard({
       
         <div>
           <h2>
-              Details
+            Details
           </h2>
           <p>
-              Country: {profile.country}
+            Country: {profile.country}
           </p>
           <p>
-              Founding year: {profile.founding_year}
+            Founding year: {profile.founding_year}
           </p>
           <p>
-              Total portfolio: {profile.total_portfolio.toLocaleString('uk-UA')} EUR
+            Total portfolio: {profile.total_portfolio.toLocaleString('uk-UA')} EUR
           </p>
+          <p>
+            Product type: {profile.product_type}
+          </p>
+          <p>
+            Credit risk score: {profile.credit_risk_score}
+          </p>
+
+          {profile.contacts &&
+            <p>
+              {profile.contacts}
+            </p>
+          }
+
+          {profile.website_url &&
+            <a href={profile.website_url} target="_blank" rel="noopener noreferrer">
+              {profile.website_url}
+            </a>
+          }
       
         </div>
       </div>

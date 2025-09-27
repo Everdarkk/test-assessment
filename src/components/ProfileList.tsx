@@ -46,17 +46,7 @@ export default async function ProfileList() {
                         
                         <p>Product type: {profile.product_type}</p>
 
-                        {profile.contacts &&
-                            <p>
-                                {profile.contacts}
-                            </p>
-                        }
-
-                        {profile.website_url &&
-                            <p>
-                                {profile.website_url}
-                            </p>
-                        }
+                        
                     </Link>
                 </li>
             ))}

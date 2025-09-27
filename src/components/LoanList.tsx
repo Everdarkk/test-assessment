@@ -10,7 +10,7 @@ export default function LoanList({ profileId }: {profileId: string}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // fetchging loans for the given profileId
+  // fetching loans for the given profileId
   useEffect(() => {
     if (!profileId) return;
 
@@ -39,6 +39,7 @@ export default function LoanList({ profileId }: {profileId: string}) {
     fetchLoans();
   }, [profileId]);
 
+  // tokenization handler
   const handleTokenize = async (loanId: string) => {
     try {
       const res = await fetch("/api/tokenize-loans", {
