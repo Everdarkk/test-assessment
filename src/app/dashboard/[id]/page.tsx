@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
 import UploadCsv from '@/components/UploadCsv';
 import LoanList from '@/components/LoanList';
+import Chart from '@/components/Chart';
 
 export default async function ProfileDashboard({ 
   params,
@@ -75,6 +76,8 @@ export default async function ProfileDashboard({
       <div>
         <LoanList profileId={profileId}/>
       </div>
+
+      <Chart profileId={profileId}/>
     </>
   );
 }

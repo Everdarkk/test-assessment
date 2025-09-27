@@ -86,7 +86,7 @@ export default function ProfileForm() {
       setLoading(false)
       setTimeout(() => {
         router.back()
-      }, 3000)
+      }, 300)
     }
   }
 
