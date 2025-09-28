@@ -30,8 +30,9 @@ export default function LoanList({ profileId }: {profileId: string}) {
         if (error) throw error;
 
         setLoans(data);
-      } catch (err: any) {
-        setError(err.message || "Upload error");
+      } catch (err) {
+        console.log(err);
+        setError('Error fetching loans.');
       } finally {
         setLoading(false);
       }
