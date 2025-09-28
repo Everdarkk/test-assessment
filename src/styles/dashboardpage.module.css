@@ -1,0 +1,123 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    color: #293a4d;
+}
+
+.summaryCard {
+    grid-area: summary;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+.companyName {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #293a4d;
+    color: #293a4d;
+}
+
+.keyMetrics {
+    display: flex;
+    justify-content: space-between;
+    gap: 5vw;
+    margin-bottom: 2rem;
+}
+
+.metricItem {
+    flex-basis: 50%;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Трохи темніший фон для виділення */
+    border-left: 5px solid #c93fc2; /* Акцентна лінія */
+}
+
+.metricLabel {
+    font-size: 0.9rem;
+    color: #293a4d;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.metricValue {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 5px 0 0 0;
+    color: #ce3d3d; /* Яскравий акцентний колір для чисел */
+}
+
+/* --------------------
+   4. ДЕТАЛІ (DetailsSection)
+   -------------------- */
+.detailsSection {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #293a4d;
+}
+
+.detailsTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #293a4d; /* Акцентний колір */
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки для акуратного відображення */
+    gap: 10px 20px;
+}
+
+.detailItem {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+    color: #c93fc2;
+}
+
+.detailLabel {
+    font-weight: bold;
+    color: #293a4d;
+}
+.websiteUrl {
+    grid-column: 1 / -1;
+    color: #e97c5b;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.websiteUrl:before {
+    content: "🔗 ";
+}
+
+.websiteUrl:hover {
+    color: #f7af9a;
+}
+
+.chartWrap {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .keyMetrics {
+        flex-direction: column;
+    }
+    .metricItem {
+        flex-basis: 100%;
+    }
+    .detailsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+

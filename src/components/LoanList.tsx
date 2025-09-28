@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabaseClient } from "@/utils/supabase/client";
 import { Loan } from "@/utils/types";
+import styles from '../styles/loanlist.module.css'
 
 
 export default function LoanList({ profileId }: {profileId: string}) {
@@ -62,22 +63,22 @@ export default function LoanList({ profileId }: {profileId: string}) {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (loans.length === 0) return <p>No loan records.</p>;
+  if (loading) return <p className={styles.loading}>Loading...</p>;
+  if (error) return <p className={styles.errorSign} style={{ color: "red" }}>{error}</p>;
+  if (loans.length === 0) return <p className={styles.noLoan}>No loan records.</p>;
 
   return (
-    <div>
+    <div className={styles.container}>
         {loans.map((loan) => (
-            <div key={loan.id}>
-                <p><strong>ID:</strong> {loan.id}</p>
-                <p><strong>Status:</strong> {loan.status}</p>
-                <p><strong>Total amount:</strong> {loan.amount}</p>
-                <p><strong>Payment schedule:</strong> {loan.payment_schedule}</p>
-                <p><strong>Interest rate %:</strong> {loan.interest_rate}</p>
-                <p><strong>LTV:</strong> {loan.ltv}</p>
-                <p><strong>Risk group:</strong> {loan.risk_group}</p>
-                <p><strong>Agreement link:</strong>{" "}
+            <div key={loan.id} className={styles.cardWrap}>
+                <p className={styles.id}><strong>{loan.id}</strong></p>
+                <p className={styles.status}><strong>Status:</strong> {loan.status}</p>
+                <p className={styles.amount}><strong>Total amount:</strong> {loan.amount}</p>
+                <p className={styles.payment}><strong>Payment schedule:</strong> {loan.payment_schedule}</p>
+                <p className={styles.interest}><strong>Interest rate %:</strong> {loan.interest_rate}</p>
+                <p className={styles.ltv}><strong>LTV:</strong> {loan.ltv}</p>
+                <p className={styles.riskGroup}><strong>Risk group:</strong> {loan.risk_group}</p>
+                <p className={styles.agreement}><strong>Agreement link:</strong>{" "}
                     {loan.agreement_url ? (
                         <a href={loan.agreement_url} target="_blank" rel="noreferrer">
                         View Agreement
@@ -87,15 +88,15 @@ export default function LoanList({ profileId }: {profileId: string}) {
                         )   
                     }
                 </p>
-                <p><strong>Due date:</strong> {loan.due_date ? new Date(loan.due_date).toLocaleDateString() : "-"}</p>
-                <p><strong>Tokenized:</strong> {loan.tokenized ? "Yes" : "No"}</p>
+                <p className={styles.data}><strong>Due date:</strong> {loan.due_date ? new Date(loan.due_date).toLocaleDateString() : "-"}</p>
+                <p className={styles.tokenized}><strong>Tokenized:</strong> {loan.tokenized ? "Yes" : "No"}</p>
 
                 {(!loan.tokenized && loan.status === 'active') ? (
-                  <button onClick={() => handleTokenize(loan.id)}>
+                  <button className={styles.button} onClick={() => handleTokenize(loan.id)}>
                     Tokenize
                   </button>
                 ): (
-                  <button disabled={true}>
+                  <button className={styles.button} disabled={true}>
                     Tokenize
                   </button>
                 )}

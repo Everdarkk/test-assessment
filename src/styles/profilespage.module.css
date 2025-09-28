@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.image {
+    transition: all 0.2s ease;
+}
+
+.image:hover {
+    transform: scale(1.1);
+}

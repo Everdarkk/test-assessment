@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    justify-content: center;
+    align-content: flex-start; 
+}
+
+.cardWrap {
+    flex: 0 0 auto; 
+    min-width: 300px;
+    max-width: 350px;
+    width: calc(33.33% - 25px); 
+    
+    
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 450px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cardWrap:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cardWrap p {
+    color: #3c5168;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.cardWrap p strong {
+    color: #293a4d;
+    font-weight: bold;
+}
+
+.agreement a {
+    color: #7c07aa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.agreement a:hover {
+    color: #03a9f4;
+    text-decoration: underline;
+}
+.button {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: #00bcd4;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.button:hover:not(:disabled) {
+    background-color: #0097a7;
+}
+
+.button:disabled {
+    background-color: rgba(0, 188, 212, 0.4);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.loading, .errorSign, .noLoan {
+    align-self: center;
+}
+
+@media (max-width: 1024px) {
+    .cardWrap {
+        width: calc(50% - 25px);
+        max-width: 450px;
+        height: 500px; 
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        gap: 15px;
+    }
+    .cardWrap {
+        width: 100%;
+        max-width: none;
+        min-width: unset;
+        height: auto;
+        padding: 15px;
+    }
+    .cardWrap p {
+        font-size: 0.9rem;
+    }
+}

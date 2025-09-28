@@ -19,16 +19,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  'create-profile': createProfile, 
+  modal
 }: {
   children: React.ReactNode;
-  'create-profile': React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-        {createProfile}
+        <div style={{ 
+            height: '100vh', 
+            overflow: 'auto',
+            position: 'relative'
+        }}>
+            {children}
+        </div>
+        {modal}
       </body>
     </html>
   );

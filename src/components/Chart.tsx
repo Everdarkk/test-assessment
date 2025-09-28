@@ -47,26 +47,28 @@ export default function LoanStatsColumns({ profileId }: { profileId: string }) {
   ];
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+    <div>
+      { (stats.total_loans === 0) ? null : 
       <BarChart
         width={700}
         height={400}
         data={data}
         margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
       >
-        <CartesianGrid strokeDasharray="3 3" stroke="#f5f5f5" />
-        <XAxis dataKey="name" tick={{ fill: "#ccc", fontSize: 14 }} />
-        <YAxis tick={{ fill: "#ccc", fontSize: 14 }} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#293a4d" />
+        <XAxis dataKey="name" tick={{ fill: "#293a4d", fontSize: 14 }} />
+        <YAxis tick={{ fill: "#293a4d", fontSize: 14 }} />
         <Tooltip
           formatter={(value: number) => `${value} EUR`}
-          contentStyle={{ backgroundColor: "#706f6fff", borderRadius: 8, borderColor: "#ccc" }}
+          contentStyle={{ backgroundColor: "#aaa4a4be", borderRadius: 4, borderColor: "#ccc" }}
         />
         <Bar dataKey="value">
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Bar>
-      </BarChart>
+      </BarChart> }
+      
     </div>
   );
 }

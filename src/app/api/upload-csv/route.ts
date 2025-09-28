@@ -36,7 +36,6 @@ export async function POST(req: NextRequest,) {
 
     // preparing to supabase insertion
     const dataToInsert = (records as LoanCsvRow[]).map((row) => ({
-        id: row.id,
         profile_id: profileId,
         status: row.status,
         amount: Number(row.amount),
@@ -50,8 +49,13 @@ export async function POST(req: NextRequest,) {
         token_id: null,
     }));
 
-    // вставка у таблицю loans
-    const { error } = await (await supabase).from("loans").insert(dataToInsert);
+    // supabase insertion
+    const { error } = await (await supabase)
+      .from("loans")
+      .upsert(dataToInsert, {
+        onConflict: `profile_id,status,amount,payment_schedule,interest_rate,ltv,risk_group,agreement_url,due_date`,
+        ignoreDuplicates: true,
+      });
 
     if (error) {
       console.error(error);

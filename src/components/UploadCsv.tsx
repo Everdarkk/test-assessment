@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import styles from '../styles/uploadcsv.module.css';
+import Image from "next/image";
 
 export default function UploadLoans({ profileId }: { profileId: string }) {
   const [file, setFile] = useState<File | null>(null);
@@ -13,7 +15,9 @@ export default function UploadLoans({ profileId }: { profileId: string }) {
       setMessage(null);
     }
   };
+  const fileName = file ? file.name : "Choose a .csv file";
 
+  // uploading the csv file to the server
   const handleUpload = async () => {
     if (!file) {
       setMessage("Pick a .csv file first");
@@ -35,24 +39,39 @@ export default function UploadLoans({ profileId }: { profileId: string }) {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage(`Успішно додано ${data.inserted} записів.`);
+        setMessage(`Successfully added ${data.inserted} records.`);
       } else {
-        setMessage(`Помилка: ${data.error}`);
+        setMessage(`Error: ${data.error}`);
       }
     } catch (err: any) {
       setMessage(`Error: ${err?.message || JSON.stringify(err)}`);
     } finally {
       setLoading(false);
+      // refreshing the page to show the new loans
+      window.location.reload();
     }
   };
   
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
-      <input type="file" accept=".csv" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={loading}>
-        {loading ? "Loading..." : "Upload .csv"}
+    <div className={styles.container}>
+      <label htmlFor="csv" className={styles.customFileInput}>
+        {fileName}
+      </label>
+      <input id="csv" type="file" accept=".csv" onChange={handleFileChange} className={styles.hiddenInput}/>
+      <button onClick={handleUpload} disabled={loading} className={styles.button}>
+        {loading
+          ? <span className={styles.loader}></span>
+          : <Image
+              src="/images/upload.png"
+              alt="Upload"
+              width={50}
+              height={50}
+              className={styles.uploadIcon}
+            />
+        }
       </button>
-      {message && <p>{message}</p>}
+      {message && <p className={styles.message}>{message}</p>}
+      <p className={styles.warning}><strong>Warning!</strong> Your .csv file must contain: status, amount, payment_schedule,interest_rate, ltv, risk_group, agreement_url, due_date columns or errors can occur.</p>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import styles from '../styles/profileform.module.css'
 
 export default function ProfileForm() {
   const [form, setForm] = useState({
@@ -13,13 +14,14 @@ export default function ProfileForm() {
     productType: '',
     websiteUrl: '',
     contacts: '',
-  })
+  });
 
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const router = useRouter();
 
+  // parameters for the form fields
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm((prev) => ({
       ...prev,
@@ -27,17 +29,18 @@ export default function ProfileForm() {
     }))
   }
 
+  // submit form data to the API
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
     // simple validation
     if (!form.name || !form.country) {
-      setMessage('Name and Country are required')
-      return
-    }
+      setMessage('Name and Country are required');
+      return;
+    };
 
-    setLoading(true)
-    setMessage(null)
+    setLoading(true);
+    setMessage(null);
 
     try {
       const res = await fetch('/api/create-profile', {
@@ -47,23 +50,19 @@ export default function ProfileForm() {
           name: form.name,
           country: form.country,
           foundingYear: form.foundingYear ? Number(form.foundingYear) : null,
-          totalPortfolio: form.totalPortfolio
-            ? Number(form.totalPortfolio)
-            : null,
-          creditRiskScore: form.creditRiskScore
-            ? Number(form.creditRiskScore)
-            : null,
+          totalPortfolio: form.totalPortfolio ? Number(form.totalPortfolio) : null,
+          creditRiskScore: form.creditRiskScore ? Number(form.creditRiskScore) : null,
           productType: form.productType || null,
           websiteUrl: form.websiteUrl || null,
           contacts: form.contacts || null,
         }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data.error || 'Profile creation failed')
-      }
+      };
 
       setMessage('Profile created successfully!')
       setForm({
@@ -75,32 +74,34 @@ export default function ProfileForm() {
         productType: '',
         websiteUrl: '',
         contacts: '',
-      })
+      });
     } catch (err: unknown) {
         if (err instanceof Error) {
-            setMessage(err.message)
+            setMessage(err.message);
         } else {
-            setMessage('Unknown error occurred')
+            setMessage('Unknown error occurred');
         }
     } finally {
       setLoading(false)
       setTimeout(() => {
-        router.back()
-      }, 300)
+        router.push('/');
+      }, 100)
     }
   }
 
   return (
     <form
       onSubmit={handleSubmit}
+      className={styles.container}
     >
-      <h2>Create profile</h2>
+      <h2 className={styles.title}>Create profile</h2>
       <input
         name="name"
         value={form.name}
         onChange={handleChange}
         placeholder="Name *"
         required
+        className={styles.input}
       />
 
       <input
@@ -109,6 +110,7 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Country *"
         required
+        className={styles.input}
       />
       <input
         name="foundingYear"
@@ -116,6 +118,7 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Founding Year"
         type="number"
+        className={styles.input}
       />
       <input
         name="totalPortfolio"
@@ -124,6 +127,7 @@ export default function ProfileForm() {
         placeholder="Total Portfolio (EUR)"
         type="number"
         required
+        className={styles.input}
       />
       <input
         name="creditRiskScore"
@@ -132,6 +136,7 @@ export default function ProfileForm() {
         placeholder="Credit Risk Score"
         type="number"
         required
+        className={styles.input}
       />
       <input
         name="productType"
@@ -139,6 +144,7 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Product Type (Mortgage/Private/Business)"
         required
+        className={styles.input}
       />
       <input
         name="websiteUrl"
@@ -146,22 +152,25 @@ export default function ProfileForm() {
         onChange={handleChange}
         placeholder="Website URL"
         type="url"
+        className={styles.input}
       />
       <input
         name="contacts"
         value={form.contacts}
         onChange={handleChange}
         placeholder="Phone"
+        className={styles.input}
       />
 
       <button
         type="submit"
         disabled={loading}
+        className={styles.button}
       >
         {loading ? 'Creating...' : 'Create Profile'}
       </button>
 
-      {message && <p>{message}</p>}
+      {message && <p className={styles.message}>{message}</p>}
     </form>
   )
 }

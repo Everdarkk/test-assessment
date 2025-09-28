@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { Profile } from "@/utils/types";
+import styles from '../styles/profilelist.module.css'
 
 export default async function ProfileList() {
     // supabase init
@@ -28,23 +29,23 @@ export default async function ProfileList() {
 
     // render list of profiles
     return (
-        <ul>
+        <ul className={styles.container}>
             {profiles.map((profile: Profile) => (
-                <li key={profile.id}>
-                    <Link href={`/dashboard/${profile.id}`}>
-                        <h2>{profile.name}</h2>
+                <li key={profile.id} className={styles.cardWrap}>
+                    <Link href={`/dashboard/${profile.id}`} className={styles.card}>
+                        <h2 className={styles.name}>{profile.name}</h2>
                         
                         {profile.founding_year &&
-                            <p>Established in {profile.founding_year}</p>
+                            <p className={styles.year}>Established in {profile.founding_year}</p>
                         }
 
-                        <p>From {profile.country}</p>
+                        <p className={styles.country}>From {profile.country}</p>
 
-                        <p>Total portfolio: {profile.total_portfolio}</p>
+                        <p className={styles.portfolio}>Total portfolio: <strong>{(profile.total_portfolio).toLocaleString('uk-UA')} EUR</strong></p>
 
-                        <p>Credit risk: {profile.credit_risk_score}</p>
+                        <p className={styles.risk}>Credit risk: {profile.credit_risk_score}</p>
                         
-                        <p>Product type: {profile.product_type}</p>
+                        <p className={styles.type}>Product type: {profile.product_type}</p>
 
                         
                     </Link>
