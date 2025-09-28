@@ -4,12 +4,16 @@ import UploadCsv from '@/components/UploadCsv';
 import LoanList from '@/components/LoanList';
 import Chart from '@/components/Chart';
 import styles from '../../../styles/dashboardpage.module.css'
+import type { FC } from 'react';
 
-type ForcePageProps<T> = T extends Promise<unknown> ? never : T;
-
-export default async function ProfileDashboard({
+type DashboardPageProps = {
+  params: {
+    id: string;
+  };
+};
+export const ProfileDashboard:FC<DashboardPageProps> = async ({
   params,
-}: ForcePageProps<{ params: { id: string } }>) {
+}) => {
     // get profile ID from params
     const profileId = params.id;
 
@@ -89,3 +93,4 @@ export default async function ProfileDashboard({
     </div>
   );
 }
+export default ProfileDashboard;
