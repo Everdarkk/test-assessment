@@ -10,7 +10,7 @@ import {
   CartesianGrid,
   Cell
 } from "recharts";
-import { LoanStats } from "@/utils/types";
+import { LoanStats } from "../utils/types";
 
 
 export default function LoanStatsColumns({ profileId }: { profileId: string }) {

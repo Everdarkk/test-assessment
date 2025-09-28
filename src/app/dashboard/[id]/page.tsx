@@ -5,11 +5,11 @@ import LoanList from '@/components/LoanList';
 import Chart from '@/components/Chart';
 import styles from '../../../styles/dashboardpage.module.css'
 
-export default async function ProfileDashboard({ 
+type ForcePageProps<T> = T extends Promise<unknown> ? never : T;
+
+export default async function ProfileDashboard({
   params,
-}: { 
-  params: { id: string } 
-}) {
+}: ForcePageProps<{ params: { id: string } }>) {
     // get profile ID from params
     const profileId = params.id;
 

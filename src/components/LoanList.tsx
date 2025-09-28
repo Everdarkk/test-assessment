@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabaseClient } from "@/utils/supabase/client";
-import { Loan } from "@/utils/types";
+import { Loan } from "../utils/types";
 import styles from '../styles/loanlist.module.css'
 
 

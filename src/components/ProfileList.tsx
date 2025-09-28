@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
-import { Profile } from "@/utils/types";
+import { Profile } from "../utils/types";
 import styles from '../styles/profilelist.module.css'
 
 export default async function ProfileList() {
