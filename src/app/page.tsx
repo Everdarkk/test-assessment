@@ -3,6 +3,8 @@ import ProfileList from "@/components/ProfileList";
 import styles from '../styles/profilespage.module.css';
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <div className={styles.container}>

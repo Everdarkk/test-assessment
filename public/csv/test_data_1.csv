@@ -1,0 +1,10 @@
+status,amount,payment_schedule,interest_rate,ltv,risk_group,agreement_url,due_date
+active,10000,monthly,5,80,1,https://example.com/agreement1.pdf,2025-12-01
+pending,5000,quarterly,6,70,2,https://example.com/agreement2.pdf,2025-11-15
+closed,15000,monthly,4.5,60,3,https://example.com/agreement3.pdf,2025-10-30
+active,20000,monthly,7,75,1,https://example.com/agreement4.pdf,2026-01-10
+pending,8000,quarterly,5.5,65,2,https://example.com/agreement5.pdf,2025-12-20
+active,15000,yearly,3,65,1,https://example.com/agreement6.pdf,2027-11-01
+pending,8000,quarterly,5.5,65,2,https://example.com/agreement5.pdf,2026-01-03
+pending,8000,quarterly,5.5,65,3,https://example.com/agreement5.pdf,2028-10-05
+closed,1000,weekly,8,80,1,https://example.com/agreement5.pdf,2023-08-07

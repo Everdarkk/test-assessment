@@ -26,7 +26,7 @@ export default function LoanStatsColumns({ profileId }: { profileId: string }) {
     fetchStats();
   }, [profileId]);
 
-  if (!stats) return <p>Завантаження...</p>;
+  if (!stats) return <p>Loading...</p>;
 
   const data = [
     { name: "Total Loans", value: stats.total_loans },

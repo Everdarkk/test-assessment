@@ -13,7 +13,7 @@ export async function POST(req: NextRequest,) {
     }
 
     // supabase init
-    const supabase = createClient();
+    const supabase = await createClient();
 
   try {
     // fetching file form
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest,) {
     }));
 
     // supabase insertion
-    const { error } = await (await supabase)
+    const { error } = await supabase
       .from("loans")
       .upsert(dataToInsert, {
         onConflict: `profile_id,status,amount,payment_schedule,interest_rate,ltv,risk_group,agreement_url,due_date`,

@@ -5,10 +5,10 @@ import styles from '../styles/profilelist.module.css'
 
 export default async function ProfileList() {
     // supabase init
-    const supabase = createClient();
-    console.log(supabase);
+    const supabase = await createClient();
+
     // fetch profiles
-    const { data: profiles, error } = await (await supabase)
+    const { data: profiles, error } = await supabase
         .from('profiles')
         .select('*')
         .order('id', { ascending: true });

@@ -4,33 +4,36 @@ import UploadCsv from '@/components/UploadCsv';
 import LoanList from '@/components/LoanList';
 import Chart from '@/components/Chart';
 import styles from '../../../styles/dashboardpage.module.css'
-import type { FC } from 'react';
 
-type DashboardPageProps = {
-  params: {
-    id: string;
-  };
-};
-export const ProfileDashboard:FC<DashboardPageProps> = async ({
+export const dynamic = "force-dynamic";
+
+
+export default async function Page({
   params,
-}) => {
+}: {
+  params: Promise<{ id: string }>
+}) {
     // get profile ID from params
-    const profileId = params.id;
+    const  profileId  = (await params).id;
+    console.log("Profile ID:", profileId);
 
     // supabase init
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // individual profile fetch
-    const { data: profile, error } = await (await supabase)
+    const { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', profileId)
         .single();
 
     // error handling <not found>
-    if (error || !profile) {
-        notFound(); 
+    if (error) {
+      console.error("Supabase error:", error);
+      notFound();
     }
+
+    if (!profile) notFound();
 
   return (
     <div className={styles.container}>
@@ -93,4 +96,3 @@ export const ProfileDashboard:FC<DashboardPageProps> = async ({
     </div>
   );
 }
-export default ProfileDashboard;

@@ -1,0 +1,16 @@
+status,amount,payment_schedule,interest_rate,ltv,risk_group,agreement_url,due_date
+active,25000,monthly,4.25,75,1,https://example.com/a101.pdf,2028-05-20
+closed,5000,weekly,8.00,85,3,https://example.com/a102.pdf,2024-03-10
+pending,150000,yearly,3.50,60,1,https://example.com/a103.pdf,2030-11-01
+active,12000,quarterly,6.50,70,2,https://example.com/a104.pdf,2027-08-15
+active,4500,monthly,7.20,80,2,https://example.com/a105.pdf,2026-06-05
+closed,800,weekly,10.00,90,3,https://example.com/a106.pdf,2024-01-25
+pending,75000,monthly,4.00,65,1,https://example.com/a107.pdf,2029-02-28
+active,18000,quarterly,5.75,70,2,https://example.com/a108.pdf,2027-04-12
+closed,30000,yearly,3.25,55,1,https://example.com/a109.pdf,2023-10-18
+active,1100,monthly,9.50,85,3,https://example.com/a110.pdf,2025-12-01
+pending,9000,quarterly,6.00,75,2,https://example.com/a111.pdf,2026-09-30
+active,55000,monthly,3.80,60,1,https://example.com/a112.pdf,2031-03-17
+closed,100000,yearly,2.90,50,1,https://example.com/a113.pdf,2022-12-01
+active,3500,weekly,8.50,80,3,https://example.com/a114.pdf,2025-11-25
+pending,22000,monthly,5.10,68,2,https://example.com/a115.pdf,2028-01-07
