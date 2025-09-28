@@ -35,9 +35,9 @@ export async function POST(req: NextRequest) {
         if (error) throw error;
         
         return NextResponse.json({ success: true, loan: data });
-    } catch (err:any) {
+    } catch (err) {
         return NextResponse.json(
-            { error: err.message || 'Tokenization error'},
+            { error: err || 'Tokenization error'},
             { status: 500}
         );
     }

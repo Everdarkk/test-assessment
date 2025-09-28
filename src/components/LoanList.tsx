@@ -58,8 +58,8 @@ export default function LoanList({ profileId }: {profileId: string}) {
           loan.id === loanId ? { ...loan, ...data.loan } : loan
         )
       );
-    } catch (err: any) {
-      alert(err.message || "Tokenization error");
+    } catch (err) {
+      alert(err || "Tokenization error");
     }
   };
 

@@ -43,8 +43,8 @@ export default function UploadLoans({ profileId }: { profileId: string }) {
       } else {
         setMessage(`Error: ${data.error}`);
       }
-    } catch (err: any) {
-      setMessage(`Error: ${err?.message || JSON.stringify(err)}`);
+    } catch (err) {
+      setMessage(`Error: ${err || JSON.stringify(err)}`);
     } finally {
       setLoading(false);
       // refreshing the page to show the new loans

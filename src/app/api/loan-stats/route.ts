@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
             ...perf,
         // Додаткові метрики можна порахувати тут: avg_interest, avg_ltv, count_loans
         });
-    } catch (err: any) {
-        return NextResponse.json({ error: err.message }, { status: 500 });
+    } catch (err) {
+        return NextResponse.json({ error: err}, { status: 500 });
     }
 }
