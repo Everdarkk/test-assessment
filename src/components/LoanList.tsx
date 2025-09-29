@@ -41,6 +41,12 @@ export default function LoanList({ profileId }: {profileId: string}) {
     fetchLoans();
   }, [profileId]);
 
+  // status checker
+  const getStatus = (due_date: string | null) => {
+    if (!due_date) return "Active";
+    return new Date(due_date) < new Date() ? "Expired" : "Active";
+  };
+
   // tokenization handler
   const handleTokenize = async (loanId: string) => {
     try {
@@ -73,7 +79,7 @@ export default function LoanList({ profileId }: {profileId: string}) {
         {loans.map((loan) => (
             <div key={loan.id} className={styles.cardWrap}>
                 <p className={styles.id}><strong>{loan.id}</strong></p>
-                <p className={styles.status}><strong>Status:</strong> {loan.status}</p>
+                <p className={styles.status}><strong>Status:</strong> {getStatus(loan.due_date)} </p>
                 <p className={styles.amount}><strong>Total amount:</strong> {loan.amount}</p>
                 <p className={styles.payment}><strong>Payment schedule:</strong> {loan.payment_schedule}</p>
                 <p className={styles.interest}><strong>Interest rate %:</strong> {loan.interest_rate}</p>
@@ -92,7 +98,7 @@ export default function LoanList({ profileId }: {profileId: string}) {
                 <p className={styles.data}><strong>Due date:</strong> {loan.due_date ? new Date(loan.due_date).toLocaleDateString() : "-"}</p>
                 <p className={styles.tokenized}><strong>Tokenized:</strong> {loan.tokenized ? "Yes" : "No"}</p>
 
-                {(!loan.tokenized && loan.status === 'active') ? (
+                {(!loan.tokenized && getStatus(loan.due_date) === 'Active') ? (
                   <button className={styles.button} onClick={() => handleTokenize(loan.id)}>
                     Tokenize
                   </button>

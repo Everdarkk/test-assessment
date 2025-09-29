@@ -35,19 +35,24 @@ export async function POST(req: NextRequest,) {
     });
 
     // preparing to supabase insertion
-    const dataToInsert = (records as LoanCsvRow[]).map((row) => ({
+    const dataToInsert = (records as LoanCsvRow[]).map((row) => {
+      const dueDate = row.due_date ? new Date(row.due_date) : null;
+      const isExpired = dueDate ? dueDate < new Date() : false;
+
+      return {
         profile_id: profileId,
-        status: row.status,
+        status: isExpired ? "Expired" : "Active",
         amount: Number(row.amount),
         payment_schedule: row.payment_schedule,
         interest_rate: Number(row.interest_rate),
         ltv: Number(row.ltv),
         risk_group: row.risk_group,
         agreement_url: row.agreement_url,
-        due_date: row.due_date ? new Date(row.due_date).toISOString() : null,
+        due_date: dueDate ? dueDate.toISOString() : null,
         tokenized: false,
         token_id: null,
-    }));
+      };
+    });
 
     // supabase insertion
     const { error } = await supabase
